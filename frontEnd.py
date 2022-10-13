@@ -57,7 +57,23 @@ for jump in timeJumps:
             if (f'-{jump1[4]} -{jump[4]}') not in clauses:
                 clauses.append(f'-{jump[4]} -{jump1[4]}')
     
-    clauses.append(jump[4])
+    
+    for peg in timePegs:
+        preCond = f'-{jump[4]} '
+        if int(peg[1]) == int(time):
+            if int(peg[0]) == int(jump[0]) or int(peg[0]) == int(jump[1]):
+                preCond += str(peg[2])
+                clauses.append(preCond)
+            elif int(peg[0]) == int(jump[2]):
+                preCond += f'-{peg[2]}'
+                clauses.append(preCond)
+        elif int(peg[1]) == int(time)+1:
+            if int(peg[0]) == int(jump[0]) or int(peg[0]) == int(jump[1]):
+                preCond += f'-{peg[2]}'
+                clauses.append(preCond)
+            elif int(peg[0]) == int(jump[2]):
+                preCond += f'{peg[2]}'
+                clauses.append(preCond)
 
 for peg in timePegs:
     if int(peg[1]) == 1:
@@ -72,6 +88,28 @@ for peg in timePegs:
                 if (f'-{peg[2]} -{peg1[2]}') not in clauses:
                     clauses.append(f'-{peg1[2]} -{peg[2]}')
 
+    #check for frame axioms
+    frmAx = f'-{peg[2]} '
+    if int(peg[1]) < int(numHoles)-1:
+        time = int(peg[1])
+        for peg1 in timePegs:
+            if int(peg1[1]) == time+1 and peg1[0] == peg[0] and peg1 != peg:
+                frmAx += f'{peg1[2]}'
+                for jump in timeJumps:
+                    if int(jump[3]) == int(peg[1]) and (int(jump[1]) == int(peg[0]) or int(jump[0]) == int(peg[0])):
+                        frmAx += f' {jump[4]}'
+                clauses.append(frmAx)
+
+    frmAx = f'{peg[2]} '
+    if int(peg[1]) < int(numHoles)-1:
+        time = int(peg[1])
+        for peg1 in timePegs:
+            if int(peg1[1]) == time+1 and peg1[0] == peg[0] and peg1 != peg:
+                frmAx += f'-{peg1[2]}'
+                for jump in timeJumps:
+                    if int(jump[3]) == int(peg[1]) and (int(jump[2]) == int(peg[0])):
+                        frmAx += f' {jump[4]}'
+                clauses.append(frmAx)
 
 for clause in clauses:
     print(clause)
