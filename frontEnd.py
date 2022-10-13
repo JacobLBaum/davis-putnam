@@ -40,7 +40,7 @@ for peg in pegs:
     for time in range(1, int(numHoles)):
         index += 1
         prop = str(index)
-        prop += f' Peg({peg}, {time})'
+        prop += f' Peg({peg},{time})'
         props.append(prop)
         timePeg = [peg, time, index]
         timePegs.append(timePeg) #create a list of peg propositions with their times
