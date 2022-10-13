@@ -94,7 +94,7 @@ def dp1(atoms,S,V):
     copy = []
     for c in S:
         copy.append(c.copy())
-        
+
     for A in atoms:
         if A not in V:
             V[A] = True
@@ -139,11 +139,12 @@ def obviousAssign(L, V):
         V[A] = False
 
 output = ''
-print('here', dp1(atoms,clauses,V))
-
-V = OrderedDict(sorted(dp1(atoms,clauses,V).items()))
-for key in V.keys():
-    output += (key + ' ' + ('T' if V[key] else 'F') + '\n')
+ans = dp1(atoms,clauses,V)
+print('Ans',ans)
+if ans != None:
+    V = OrderedDict(sorted(ans.items()))
+    for key in V.keys():
+        output += (key + ' ' + ('T' if V[key] else 'F') + '\n')
 output += '0\n'
 for val in remainder:
     output += (val) + '\n'
