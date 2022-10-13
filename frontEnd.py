@@ -56,6 +56,8 @@ for jump in timeJumps:
         if jump1 != jump and jump1[3] == time:
             if (f'-{jump1[4]} -{jump[4]}') not in clauses:
                 clauses.append(f'-{jump[4]} -{jump1[4]}')
+    
+    clauses.append(jump[4])
 
 for peg in timePegs:
     if int(peg[1]) == 1:
