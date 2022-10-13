@@ -15,7 +15,7 @@ with open(os.path.dirname(os.path.realpath(__file__)) + '\dPOutput.txt', encodin
                     [i, val] = lineVals
                     #print('i:', i, 'val:', val)
                     if i == index and val == 'T':
-                        output += line1
+                        output += f'{line}\n'
 
     with open('backendOut.txt', 'w') as f:
         f.write(output)
