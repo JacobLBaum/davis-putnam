@@ -1,1 +1,1 @@
-Input.txt has the input for the frontEnd.py --> the front end outputs to dPInput, the input for davisPutnam.py
+Input.txt has the input for the frontEnd.py --> the front end outputs to dPInput.txt, the input for davisPutnam.py --> davisPutnam outputs to dPOutput.txt which is the input for backend.py which output to backendOut.txt
