@@ -111,6 +111,15 @@ for peg in timePegs:
                         frmAx += f' {jump[4]}'
                 clauses.append(frmAx)
 
-for clause in clauses:
-    print(clause)
+output = ''
 
+for clause in clauses:
+    output += f'{clause}\n'
+
+output += '0\n'
+
+for prop in props:
+    output += f'{prop}\n'
+
+with open('dPInput.txt', 'w') as f:
+    f.write(output)

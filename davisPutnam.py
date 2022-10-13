@@ -2,7 +2,7 @@ import os
 from collections import OrderedDict
 
 #read in the input from input.txt
-with open(os.path.dirname(os.path.realpath(__file__)) + '\input.txt', encoding = 'utf-8') as f:
+with open(os.path.dirname(os.path.realpath(__file__)) + '\dPInput.txt', encoding = 'utf-8') as f:
     lines = f.read().split('\n')
     lines = [line.strip() for line in lines]
     clauses = []
